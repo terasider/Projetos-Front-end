@@ -1,0 +1,188 @@
+****************************************************************************************************************************
+----------------------------------------------   Primeiros comandos de Jquery   --------------------------------------------
+
+Todo comando jquery deve estar dentro de uma função  com notação jquery
+
+essa função é escrita assim, sendo que os ***asteriscos indicam aquilo que vc vai inserir para mudar alguma coisa.
+
+$(function(){
+$("*").@(%,&);
+});
+
+Como ve, em jquery, se usa funções auto-invocadas para fazer alguma coisa.
+ou seja, inicia-se com um caracteristico sinal de $cifrao , abre parentese, declara a função, e fecha parenteses quando a função foi terminada.É um bom costume fechar também com ; ponto e virgula.
+
+no asterisco*, se coloca o seletor, que é o elemento que vai receber ação da função jquery
+o sinal @ representa o método que será aplicado sobre o elemento indicado pelo seletor, o sinal % é um dos parametros da função que será executada, o sinal & representa o segundo parametro quando necessario, podem haver mais de 2 parametros, como no caso de formatações css, usarei muito uma notação semelhante a arquivos Json, declarando-se a chave, : valor , "chave":"valor", "chave":"valor" , ...
+
+Os seletores de jquery se baseiam no modelo CSS, em que o asterisco do seletor será quase sempre com aspas, 
+se o elemento for uma tag, apenas digita-se o nome
+se for uma ID, digita-se #+nome da id
+se for uma classe, digita-se .+nome da classe.
+apos declarar o seletor, digita-se .  +  o metodo jquery a ser usado.
+
+Exemplos de função
+.attr -> $("a").attr("href" , "www.outraurl.com");
+		Definimos um atributo ou modificamos
+.removeAttr -> $("table").removeAttr("border"); 
+		Remove atributo border do elemento table
+.text -->
+		define, apaga ou muda o texto de um...paragrafo, ou titulo.
+.html -->
+		Usa-se html ao inves de text para alterar conteudo com marcações html
+.val -->
+		Altera value de um elemento
+
+
+Os metodos .text() e .html() possuem o defeito de acabar apagando o conteudo anterior
+quando a intenção for de incrementar conteudo ao ja existente sem apaga-lo, usa-se
+outras abordagens
+.append() -> insere conteudo no final do conteudo do elemento
+.prepend() -> insere conteudo no inicio do conteudo do elemento
+.after() ->Insere conteudo após o elemento
+.before() -> Insere antes do conteudo do elemento
+Para esses 4 metodos, não há limites de parametros usáveis, apenas separe cada um por , virgula.
+Se usar uma variavel como parametro, esta nao deve ser entre aspas.
+
+Adicionar classe a um elemento selecionado
+.addClass("classeadicionada outraclasse maisumaclasse")
+No caso das classes, não é necessario separar por virgula, mas por espaço, e nesse caso, as aspas são necessárias.
+
+Remover classe
+.removeClass
+
+Alternar entre adicionar ou remover tal classe ou conjunto de classes
+.toggleClass
+
+Obter atributos css de um elemento ou definir
+$("seletor").css("background") ->Ao usar 1 parametro, voce esta obtendo a propriedade
+$("seletor").css("background","red") ->Ao usar 2 parametros, voce esta definindo a propriedade do parametro 1.
+
+Definir varios atributos css
+$("p").css("color":"red","font-weight":"700") ->Na primeira regra, definimos o atributo digitamos : dois pontos +"valor" em seguida damos virgula, e fazemos o mesmo.
+
+Definir dimensões de elementos (largura-altura)
+$("seletor").width() -> obtem o valor de altura do elemento selecionado
+$("seletor").width(100) -> define o valor de altura do elemento selecionado em 100px, sem aspas, sem px, apenas o numero do tamanho
+$("seletor").height(100) -> Define altura em 100px
+
+Mudar padding via jquery
+$("seletor").innerWidth(100) ->Define espaçamento interno(padding) tanto na Esquerda quanto na direita.
+$("seletor").innerHeight(100) ->Define espaçamento interno(padding) tanto no Topo quanto Abaixo.
+
+$("seletor").outerWidth(100) ->Define margem externa(Margin) tanto na Esquerda quanto na direita em 100px
+$("seletor").outerHeight(100) ->Define espaçamento interno(Margin) tanto no Topo quanto Abaixo em 100px
+
+
+Manipulando e obtendo info do Dom
+$("seletor").parent() ->obtem o elemento pai do elemento selecionado.
+Tal elemento pai pode ser atribuido a uma variavel para trabalharmos suas propriedades por exemplo.
+
+$("seletor").parent() ->obtem o elemento pai do elemento selecionado.
+$("seletor").parents() ->obtem todos os elementos pai do elemento selecionado.
+$("seletor").children->obtem todos os elementos filhos diretos do elemento selecionado.
+$("seletor").siblings() ->obtem todos os irmãos do elemento selecionado.
+
+Para cada elemento que não for um id, podem existir até dezenas de irmãos ou pais elementos. O primeiro deles declarado no documento html possui índice 0 zero, o proximo, indice 1. Quando o elemento selecionado tem indice 4, o proximo será o 5º, o anterior, o 3º.
+
+$("seletor").next() ->obtem o próximo elemento irmão do elemento selecionado.
+$("seletor").nextAll() -> obtem todos os próximos elementos irmãos do elemento selecionado.
+$("seletor").prev() ->obtem o elemento irmão anterior do elemento selecionado.
+$("seletor").prevAll() -> obtem todos os irmãos anteriores do elemento selecionado.
+
+$("seletor").eq(indice) -> Retorna o indice do elemento em relação a tag que ocupa.
+$("seletor").eq(3) -> retorna a QUARTA posição no indice 
+$("seletor").eq(0) -> retorna a Primeira posição no indice 
+
+Removendo elementos da DOM
+Digamos que voce tenha 5 paragrafos e quer excluir da DOM o segundo (indice 1)
+$("p").eq(1).remove() -> remove o 2ºelemento paragrafo
+
+Para remover todos os parágrafos, omite o metodo .eq
+$("p").remove() -> Removerá todos os parágrafo.
+
+Esvaziar elementos
+Digamos que voce tem 1 div, e dentro dela existem 4 paragrafos. E voce queira excluir todos eles da DOM.
+Para esvaziar um elemento de seus filhos, use o seguinte metodo
+$("div").empty() 
+
+Talvez voce tenha mais divs, e queira esvaziar somente a primeira?
+$("div").eq(0).empty() -> Todos os elementos que estavam na primeira div foram excluidos da árvore do documento(DOM)
+
+Manipular eventos
+$("seletor").click(função a ser executada, se esse detalhe for omitido, o evento não fará nada) 
+
+Eventos mais comuns
+Eventos de mouse
+
+click - mouse clica 1 vez no elemento
+dblclick - mouse clica duas vezes sobre o elemento
+mouseenter - mouse chega no elemento
+mouseleave - mouse deixa o elemento
+mouseover - mouse fica em cima do elemento
+
+Eventos de teclado
+keydown - Ocorre quando a tecla do teclado é pressionada
+keyup - Ocorre quando a tecla do teclado é solta
+
+Eventos de formulario
+submit - ocorre quando o formulario é submetido
+change - quando o valor de um elemento é mudado
+focus - quando elemento recebe foco.
+blur - quando elemento perde o foco.
+O foco é quando ativamos uma entrada de formulario e esta permanece ativa aguardando dados, seu visual muda indicando que esta recebendo foco. 
+
+Eventos de documento
+ready - Quando a DOM do documento foi carregada, dispara o evento ready
+resize - quando a janela do navegador for redimensionada
+scroll - quando o scroll for acionado.
+
+Anexando um evento a um elemento selecionado
+$("div").on("evento", função(){} )
+
+Desanexando um evento de um elemento selecionado
+$("div").off("click")
+
+Evento é um objeto javascript, e possui suas propriedades, sub-objetos, e metodos.
+Todo objeto manipulador de eventos podem receber outros objetos de evento.
+
+pageX, pageY são as coordenadas do mouse no momento da ocorrencia do evento, os eixos iniciam no topo e a esquerda da pagina e apartir deles que as coordenadas são positivas, ao inverso, são negativas.
+
+type  ->indica o tipo do evento
+
+which -> o botão ou tecla específica pressionada. (keydown)
+
+data -> qualquer dado passado quando o evento é disparado
+
+target ->o elemento da DOM que inicia aquele evento
+
+preventDefault() ->previne a ação padrão do evento
+Exemplo:
+<a href="https://www.sololearn.com">click me</a>
+$("a").click(function(event){
+alert(event.pageX);
+event.preventDefault();
+});
+Aqui, interceptamos que o clique do mouse, ao inves de levar a abertura de sua url, apenas emita um alerta indicando a posição do mouse no eixo X na página.
+
+Outro exemplo:
+Engatilhar evento com metodo trigger
+$("div").click(function(){
+alert("Clicked!");
+});
+$("div").trigger("click");
+}
+
+
+
+stopPropagation() -> paralisa um evento e não surte efeito nos outros elementos.
+
+
+......................................................Essa nota prossegue em construção.......................................................
+
+
+
+
+
+
+
